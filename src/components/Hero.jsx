@@ -24,8 +24,8 @@ const Hero = () => {
             </nav>
 
             <h1 className='head_text'>
-                Ai Summarizez<br className='max-md:hidden' />
-                <span className='purple_gradient'>with OpenAI GPT-4</span>
+                <p className="purple_gradient ">AI Summarizer</p>
+                <span className='text-2xl'>OpenAI</span>
             </h1>
             <h2 className='desc'>
                 Ai-Summizer is an open-source tool that quickly transforms long articles into clear, concise summaries for easy reading
