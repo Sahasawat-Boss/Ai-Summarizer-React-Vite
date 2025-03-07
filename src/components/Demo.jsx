@@ -24,7 +24,7 @@ const Demo = () => {
             />
             <button
               type="submit"
-              className="border border-gray-400 hover:border-gray-900 hover:bg-purple-400 hover:text-gray-900 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-12 items-center justify-center rounded text-lg text-gray-400 peer-focus:bg-gray-100 peer-focus:text-blue-700 peer-focus:border-gray-700"
+              className="border border-gray-400 hover:border-gray-900 hover:bg-purple-400 hover:text-gray-900 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-12 items-center justify-center rounded text-lg text-gray-400 peer-focus:bg-purple-400 peer-focus:text-white peer-focus:border-gray-700"
             >
               <p>↵</p>
             </button>
