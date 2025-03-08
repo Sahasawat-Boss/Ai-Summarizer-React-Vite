@@ -1,12 +1,46 @@
-# React + Vite
+# AI-Summarizer - React + Vite 📄
+🚀 AI-Summarizer is a web application that extracts and summarizes web articles into concise, easy-to-read summaries using AI.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Screenshot 2025-03-08 141057](https://github.com/user-attachments/assets/6da86e75-900c-40f0-a071-08e38c46dcf6)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+🔗 Live Demo: https://ai-summarizer-boss-demo.netlify.app/
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+📂 GitHub Repository: [AI-Summarizer-React-Vite](https://github.com/Sahasawat-Boss/Ai-Summarizer-React-Vite)
+
+---
+### 🛠 Features
+
+✅ Summarize Web Articles – Get key insights instantly
+
+✅ Fast & Efficient – Powered by Vite for fast builds
+
+✅ History Section – Quickly revisit past summaries
+
+✅ Copy & Share – Copy summarized text with one click
+
+✅ Responsive Design – Works across all devices
+
+---
+### ⚙️ Tech Stack
+Frontend: React + Vite + Tailwind CSS
+
+
+State Management: RTK Query
+
+Backend API: RapidAPI for article summarization
+
+---
+### 💡 How It Works
+Enter a URL → Paste the article URL in the input box.
+
+Click Summarize → The app fetches and summarizes the content.
+
+View History → Previously summarized articles are saved.
+
+Copy & Share → Easily copy and share the summary.
+
+---
+### 📜 License
+This project is open-source and available under the MIT License.
