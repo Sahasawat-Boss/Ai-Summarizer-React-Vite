@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { copy, linkIcon, loader, tick } from "../assets";
+import { useLazyGetSummaryQuery } from "../services/article";
 
 const Demo = () => {
   // State to store the article data, including the URL input by the user and the generated summary
@@ -8,10 +9,26 @@ const Demo = () => {
     url: "", // Stores the URL entered by the user
     summary: "", // Stores the fetched summary of the article
   });
-  
+
+  // RTK lazy query, Call when click the button
+  const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
+
   const handleSubmit = async (e) => {
-    alert('Submitted');
+    e.preventDefault(); // Prevents the default form submission behavior (page reload)
+
+    console.log("Submitted! Please wait for the API response..."); // Log message indicating request initiation
+
+    const { data } = await getSummary({ articleUrl: article.url }); // Calls the API to get the summary
+
+    if (data?.summary) {  // Checks if the API response contains a summary
+      const newArticle = { ...article, summary: data.summary }; // Creates a new object with the updated summary
+
+      setArticle(newArticle); // Updates state with the new article data
+
+      console.log("Article Summary Updated:", newArticle); // Logs the updated article object
+    }
   };
+
 
   // Return Section ------------------------------------------------------------- 
 
