@@ -28,7 +28,7 @@ const Hero = () => {
                 <span className='text-2xl'>OpenAI</span>
             </h1>
             <h2 className='desc'>
-                Ai-Summizer is an open-source tool that quickly transforms long articles into clear, concise summaries for easy reading
+                Ai-Summarizer is an open-source tool that quickly transforms long articles into clear, concise summaries for easy reading
             </h2>
         </header>
     );
