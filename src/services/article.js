@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-//const axios = require('axios'); // Importing Axios (not used in this code but might be needed elsewhere)
+//const axios = require('axios'); // Importing Axios 
+// (not used in this code but might be needed elsewhere)
 
 // Key to the environment variable file
 const rapidApiKey = import.meta.env.VITE_RAPID_API_ARTICLE_KEY;

@@ -1,5 +1,6 @@
 import Hero from './components/Hero'
 import Demo from './components/demo'
+import Footer from './components/Footer';
 //import FontShowcase from './components/fontShowcase'; ===> <FontShowcase />
 
 import './App.css';
@@ -13,6 +14,7 @@ const App = () => {
             <div className="app">
                 <Hero/>
                 <Demo/>
+                <Footer/>
             </div>
         </main>
     )

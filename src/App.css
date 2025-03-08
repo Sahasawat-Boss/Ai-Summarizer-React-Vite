@@ -6,6 +6,7 @@
 /* Apply Satoshi as the default font */
 html {
     font-family: 'Satoshi', sans-serif;
+    overflow-y: scroll; /* ✅ Always show vertical scrollbar */
 }
 
 /* Apply Inter only where needed */
@@ -85,11 +86,11 @@ Note: The styles for this gradient grid background is heavily inspired by the cr
 }
 
 .black_btn {
-    @apply rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black;
+    @apply rounded-xl border border-black bg-black/80 py-1 px-3 text-sm shadow-md text-white transition-all hover:bg-white hover:text-black;
 }
 
 .head_text {
-    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-center;
+    @apply text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-center drop-shadow-lg;
 }
 
 .orange_gradient {

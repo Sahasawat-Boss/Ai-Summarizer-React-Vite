@@ -57,12 +57,20 @@ const Demo = () => {
       console.log("No summary received from the API."); // Logs a message if no summary is returned
     }
   };
+  // Function to copy the URL to the clipboard and toggle the icon for user feedback
+  const handleCopy = (copyUrl) => {
+    setCopied(copyUrl); // ✅ Update the state to indicate which URL was copied
+
+    navigator.clipboard.writeText(copyUrl); // ✅ Copy the URL to the clipboard
+
+    // ✅ Reset the copied state after 1.5 seconds to switch back to the original icon
+    setTimeout(() => setCopied(false), 1500);
+  };
 
 
   // Return Section (UI Rendering: Displayed in the browser ) ------------------------------------------------------------- 
-
   return (
-    <section className='mt-16 w-full max-w-xl'>
+    <section className='mt-16 w-full max-w-xl '>
       {/* Search Section*/}
       <div className='flex flex-col w-full gap-2'>
         <form
@@ -92,22 +100,27 @@ const Demo = () => {
         </form>
 
         {/* Browse History */}
-        <div className='flex flex-col gap-1 max-h-60 overflow-y-auto'>
+        <div className='flex flex-col gap-1 max-h-60 overflow-y-auto mt-3'>
+          {/* Section heading */}
+          <h2 className='font-satoshi font-bold text-gray-600 text-2xl text-center mb-3'>
+            Browses <span className='purple_gradient'>History</span>
+          </h2>
+
           {allArticles.reverse().map((item, index) => ( // Reverse the array to show the most recent first
             <div
               key={`link-${index}`}
               onClick={() => setArticle(item)} // Sets the selected article in state when clicked
               className='link_card'
             >
-              <div className='copy_btn' onClick={() => handleCopy(item.url)}>
+              <div className='copy_btn peer' onClick={() => handleCopy(item.url)}>
                 <img
                   src={copied === item.url ? tick : copy} // Changes icon when copied
                   alt={copied === item.url ? "tick_icon" : "copy_icon"} // Accessibility alt text
-                  className='w-[40%] h-[40%] object-contain' // Ensures proper scaling
+                  className='w-[80%] h-[80%] hover:bg-blue-100 rounded-full p-1 hover:scale-125 ' // Ensures proper scaling
                 />
               </div>
               {/* Display the article URL with truncation to prevent overflow */}
-              <p className='flex-1 font-satoshi text-blue-800 hover:text-blue-600 hover:underline font-medium text-sm truncate'>
+              <p className='flex-1 text-blue-800 hover:text-blue-600 hover:underline peer-hover:text-blue-600 peer-hover:underline font-medium text-sm truncate'>
                 {item.url}
               </p>
             </div>
@@ -116,7 +129,7 @@ const Demo = () => {
       </div>
 
       {/* Container for displaying loader, error message, or article summary */}
-      <div className='my-10 max-w-full flex justify-center items-center'>
+      <div className='my-6 max-w-full flex justify-center items-center'>
         {/* Show loader while fetching data */}
         {isFetching ? (
           <img src={loader} alt='loader' className='w-20 h-20 object-contain' />
@@ -130,7 +143,7 @@ const Demo = () => {
           </p>
         ) : ( // If no error and data is available, display the article summary
           article.summary && (
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-2'>
 
               {/* Section heading */}
               <h2 className='font-satoshi font-bold text-gray-600 text-2xl text-center'>
