@@ -99,7 +99,7 @@ Note: The styles for this gradient grid background is heavily inspired by the cr
 }
 
 .black_btn {
-    @apply rounded-xl border border-black bg-black/80 py-1 px-3 text-sm shadow-md text-white transition-all hover:bg-white hover:text-black;
+    @apply rounded-lg border border-black bg-black/80 py-0.5 sm:py-1 px-2.5 sm:px-3.5 text-sm shadow-md text-white transition-all hover:bg-white hover:text-black;
 }
 
 .head_text {
