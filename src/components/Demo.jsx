@@ -1,7 +1,10 @@
+// Import Dependencies Section ----------------------------------------------------------------------------
 import React, { useState, useEffect } from "react";
 
 import { copy, linkIcon, loader, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
+
+// Logic Section Section ---------------------------------------------------------------------- 
 
 const Demo = () => {
   // State to store the article data, including the URL input by the user and the generated summary
@@ -10,8 +13,27 @@ const Demo = () => {
     summary: "", // Stores the fetched summary of the article
   });
 
+  //Store Articles
+  const [allArticles, setAllArticles] = useState([]);
+  const [copied, setCopied] = useState("");
+
   // RTK lazy query, Call when click the button
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
+
+
+  // Retrieve articles data from local storage and parse them into a JavaScript object
+  useEffect(() => {
+    const articlesFromLocalStorage = JSON.parse(localStorage.getItem("articles"));
+
+    // If there are articles stored, update the state with them
+    if (articlesFromLocalStorage) {
+      setAllArticles(articlesFromLocalStorage);
+    }
+  }, []); // Empty dependency array ensures this effect runs only once when the component mounts
+
+  // This ensures that previously saved articles are restored when the page reloads or the tab is reopened,
+  // preventing data loss from a page refresh or accidental closure.
+
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior (page reload)
@@ -20,17 +42,26 @@ const Demo = () => {
 
     const { data } = await getSummary({ articleUrl: article.url }); // Calls the API to get the summary
 
+
     if (data?.summary) {  // Checks if the API response contains a summary
       const newArticle = { ...article, summary: data.summary }; // Creates a new object with the updated summary
+      const updatedAllArticles = [newArticle, ...allArticles];
 
-      setArticle(newArticle); // Updates state with the new article data
+      setArticle(newArticle); // Updates the state with the new summarized article
+      setAllArticles(updatedAllArticles); // Updates the list of all articles
 
-      console.log("Article Summary Updated:", newArticle); // Logs the updated article object
+      // Saves the updated articles list to local storage to prevent data loss on page reload or tab closure
+      localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
+
+      console.log("Article Summary Updated:", newArticle); // Logs the updated article object for debugging
+    } else {
+      console.log("No summary received from the API."); // Logs a message if no summary is returned
     }
+
   };
 
 
-  // Return Section ------------------------------------------------------------- 
+  // Return Section (UI Rendering: Displayed in the browser ) ------------------------------------------------------------- 
 
   return (
     <section className='mt-16 w-full max-w-xl'>
@@ -63,13 +94,34 @@ const Demo = () => {
         </form>
 
         {/* Browse History */}
-
+        <div className='flex flex-col gap-1 max-h-60 overflow-y-auto'>
+          {allArticles.reverse().map((item, index) => ( // Reverse the array to show the most recent first
+            <div
+              key={`link-${index}`}
+              onClick={() => setArticle(item)} // Sets the selected article in state when clicked
+              className='link_card'
+            >
+              <div className='copy_btn' onClick={() => handleCopy(item.url)}>
+                <img
+                  src={copied === item.url ? tick : copy} // Changes icon when copied
+                  alt={copied === item.url ? "tick_icon" : "copy_icon"} // Accessibility alt text
+                  className='w-[40%] h-[40%] object-contain' // Ensures proper scaling
+                /> 
+              </div>
+              {/* Display the article URL with truncation to prevent overflow */}
+              <p className='flex-1 font-satoshi text-blue-800 hover:text-blue-600 hover:underline font-medium text-sm truncate'>
+                {item.url}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Display Result */}
 
-    </section>
+    </section >
   )
 }
 
+// Export Section (Can be used elsewhere.) ------------------------------------------------------------------------- 
 export default Demo
