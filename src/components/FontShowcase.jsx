@@ -1,7 +1,9 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css"; // Ensure styles are imported
 
 const FontShowcase = () => {
+    const navigate = useNavigate(); // Hook for navigation
+
     const fontSizes = [
         "text-xs", "text-sm", "text-base", "text-lg", "text-xl",
         "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl"
@@ -9,7 +11,18 @@ const FontShowcase = () => {
 
     return (
         <div className="p-6 space-y-6">
-            <h1 className="text-4xl font-bold text-center">Font Showcase</h1>
+            {/* Home Button */}
+            <div className="flex justify-center">
+                <button
+                    onClick={() => navigate("/")} // ✅ Navigate back to Home
+                    className="absolute left-8 black_btn px-6 py-2 rounded-lg hover:bg-gray-900 transition"
+                >
+                    ⬅ Back to Home
+                </button>
+            </div>
+
+            <h1 className="text-4xl font-bold text-center">FrontShow Case</h1>
+            <p className="text-lg text-center my-8">Explore the fonts used in this project!</p>
 
             {/* Satoshi Font Section */}
             <div className="border p-4 rounded-lg shadow-md">

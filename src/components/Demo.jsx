@@ -70,7 +70,7 @@ const Demo = () => {
 
   // Return Section (UI Rendering: Displayed in the browser ) ------------------------------------------------------------- 
   return (
-    <section className='mt-16 w-full max-w-xl '>
+    <section className='mt-10 w-full max-w-xl '>
       {/* Search Section*/}
       <div className='flex flex-col w-full gap-2'>
         <form
@@ -100,31 +100,33 @@ const Demo = () => {
         </form>
 
         {/* Browse History */}
-        <div className='flex flex-col gap-1 max-h-60 overflow-y-auto mt-3'>
+        <div className='flex flex-col gap-1 max-h-60 mt-3'>
           {/* Section heading */}
           <h2 className='font-satoshi font-bold text-gray-600 text-2xl text-center mb-3'>
-            Browses <span className='purple_gradient'>History</span>
+            Summary <span className='purple_gradient'>History</span>
           </h2>
 
-          {allArticles.reverse().map((item, index) => ( // Reverse the array to show the most recent first
-            <div
-              key={`link-${index}`}
-              onClick={() => setArticle(item)} // Sets the selected article in state when clicked
-              className='link_card'
-            >
-              <div className='copy_btn peer' onClick={() => handleCopy(item.url)}>
-                <img
-                  src={copied === item.url ? tick : copy} // Changes icon when copied
-                  alt={copied === item.url ? "tick_icon" : "copy_icon"} // Accessibility alt text
-                  className='w-[80%] h-[80%] hover:bg-blue-100 rounded-full p-1 hover:scale-125 ' // Ensures proper scaling
-                />
+          <div className=" overflow-y-auto">
+            {allArticles.reverse().map((item, index) => ( // Reverse the array to show the most recent first
+              <div
+                key={`link-${index}`}
+                onClick={() => setArticle(item)} // Sets the selected article in state when clicked
+                className='link_card mt-1'
+              >
+                <div className='copy_btn peer' onClick={() => handleCopy(item.url)}>
+                  <img
+                    src={copied === item.url ? tick : copy} // Changes icon when copied
+                    alt={copied === item.url ? "tick_icon" : "copy_icon"} // Accessibility alt text
+                    className='w-[80%] h-[80%] hover:bg-blue-100 rounded-full p-1 hover:scale-125 ' // Ensures proper scaling
+                  />
+                </div>
+                {/* Display the article URL with truncation to prevent overflow */}
+                <p className='flex-1 text-blue-800 hover:text-blue-600 hover:underline peer-hover:text-blue-600 peer-hover:underline font-medium text-sm truncate'>
+                  {item.url}
+                </p>
               </div>
-              {/* Display the article URL with truncation to prevent overflow */}
-              <p className='flex-1 text-blue-800 hover:text-blue-600 hover:underline peer-hover:text-blue-600 peer-hover:underline font-medium text-sm truncate'>
-                {item.url}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

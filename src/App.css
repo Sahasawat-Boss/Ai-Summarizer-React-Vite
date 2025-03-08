@@ -8,6 +8,19 @@ html {
     font-family: 'Satoshi', sans-serif;
     overflow-y: scroll; /* ✅ Always show vertical scrollbar */
 }
+/* Custom scrollbar styling for a cleaner look */
+::-webkit-scrollbar {
+    width: 8px; /* ✅ Adjust scrollbar width */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #b9bfc7; /* ✅ Gray thumb */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ededee; /* ✅ Light gray track */
+}
 
 /* Apply Inter only where needed */
 .font-inter {
@@ -100,17 +113,12 @@ Note: The styles for this gradient grid background is heavily inspired by the cr
     @apply bg-gradient-to-r from-purple-800 via-purple-600 to-indigo-500 bg-clip-text text-transparent;
 }
 
-
-.desc {
-    @apply mt-5 text-lg text-gray-600 sm:text-xl text-center max-w-2xl;
-}
-
 .url_input {
     @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-10 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
 }
 
 .link_card {
-    @apply p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
+    @apply p-2 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
 }
 
 .copy_btn {
