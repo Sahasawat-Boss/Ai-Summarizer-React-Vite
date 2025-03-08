@@ -20,7 +20,6 @@ const Demo = () => {
   // RTK lazy query, Call when click the button
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
-
   // Retrieve articles data from local storage and parse them into a JavaScript object
   useEffect(() => {
     const articlesFromLocalStorage = JSON.parse(localStorage.getItem("articles"));
@@ -57,7 +56,6 @@ const Demo = () => {
     } else {
       console.log("No summary received from the API."); // Logs a message if no summary is returned
     }
-
   };
 
 
@@ -106,7 +104,7 @@ const Demo = () => {
                   src={copied === item.url ? tick : copy} // Changes icon when copied
                   alt={copied === item.url ? "tick_icon" : "copy_icon"} // Accessibility alt text
                   className='w-[40%] h-[40%] object-contain' // Ensures proper scaling
-                /> 
+                />
               </div>
               {/* Display the article URL with truncation to prevent overflow */}
               <p className='flex-1 font-satoshi text-blue-800 hover:text-blue-600 hover:underline font-medium text-sm truncate'>
@@ -117,8 +115,38 @@ const Demo = () => {
         </div>
       </div>
 
-      {/* Display Result */}
+      {/* Container for displaying loader, error message, or article summary */}
+      <div className='my-10 max-w-full flex justify-center items-center'>
+        {/* Show loader while fetching data */}
+        {isFetching ? (
+          <img src={loader} alt='loader' className='w-20 h-20 object-contain' />
+        ) : error ? ( // If an error occurs, display an error message
+          <p className='font-inter font-bold text-black text-center'>
+            Something went wrong...
+            <br />
+            <span className='font-satoshi font-normal text-gray-700'>
+              {error?.data?.error}
+            </span>
+          </p>
+        ) : ( // If no error and data is available, display the article summary
+          article.summary && (
+            <div className='flex flex-col gap-3'>
 
+              {/* Section heading */}
+              <h2 className='font-satoshi font-bold text-gray-600 text-2xl text-center'>
+                Article <span className='purple_gradient'>Summary</span>
+              </h2>
+
+              {/* Summary box containing the fetched article summary */}
+              <div className='summary_box h-72 overflow-auto'>
+                <p className='font-inter text-sm text-gray-700'>
+                  {article.summary}
+                </p>
+              </div>
+            </div>
+          )
+        )}
+      </div>
     </section >
   )
 }

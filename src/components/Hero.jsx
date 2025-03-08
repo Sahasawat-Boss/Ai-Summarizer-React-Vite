@@ -11,7 +11,6 @@ const Hero = () => {
                     <p className="text-2xl text-center">AI-Summarizer <span className="text-sm">[Demo]</span></p>
                 </div>
 
-
                 <button
                     type='button'
                     onClick={() =>
@@ -23,13 +22,13 @@ const Hero = () => {
                 </button>
             </nav>
 
+            {/* Title Section */}
             <h1 className='head_text'>
                 <p className="purple_gradient ">AI Summarizer</p>
-                <span className='text-2xl'>OpenAI</span>
+                <span className='text-xl font-medium'>[ Article Extractor and Summarizer + OpenAI ]</span>
             </h1>
             <h2 className='desc'>
-                Ai-Summarizer is an open-source tool that quickly transforms long articles into clear, concise summaries for easy reading
-            </h2>
+                AI-Summarizer is a powerful tool that summarizes entire web articles into clear, concise summaries. Simply paste a URL and get an easy-to-read summary in seconds!            </h2>
         </header>
     );
 };
